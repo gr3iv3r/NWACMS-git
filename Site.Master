@@ -1,0 +1,246 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" EnableViewState="true"  Inherits="NWACMS.SiteMaster"  %>
+
+<!DOCTYPE html >
+<html >
+ 
+<head >
+    <title></title>
+
+    <link href="Styles/aSite.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/modern.css" rel="stylesheet" type="text/css" />
+     
+    <link rel="stylesheet" type="text/css" href="Styles/styles.css" />
+    <%--<link rel="stylesheet" type="text/css" href="Styles/demo.css" />--%>
+  
+	
+	
+  
+    
+   <script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+   <script type="text/javascript"  src="Scripts/dialog.js"></script>
+   <script type="text/javascript"  src="Scripts/input-control.js"></script>
+   <script type="text/javascript"  src="Scripts/selectable.js"> </script>
+   <script type="text/javascript"  src="Scripts/jquery.blockUI.js"></script>
+   <script type='text/javascript' src='Scripts/menu_jquery.js'></script>
+    
+      <%--<script>
+
+          $(document).ready(function () {
+
+             
+              $('#loginbtn').click(function () {
+                  //$("#loginForm").load('login.aspx #loginForm1');
+                  // 
+                  $('#loginForm').find("input[type=text], UserName1").val("");
+                  $('#loginForm').find("input[type=password], UserName1").val("");
+                  $('#loginForm').find("[id*='Validator']").css('visibility', ' hidden');
+                  $.blockUI({ message: $('#loginForm'), onOverlayClick: $.unblockUI });
+
+                  $('#loginForm').parent().appendTo($("form:first"));
+                  alert("afdafdaf");
+
+                  $('#loginbtn').click(function () {
+
+
+
+
+
+                  });
+              });
+          });
+
+      
+      </script>--%>
+     
+
+   <%-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="modern-responsive.css" rel="stylesheet">--%>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+ 
+     
+</head>
+<body  class="metrouicss">
+   
+<form id="mainform" runat="server">
+     <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager> 
+
+     <div style="display:inline">  
+     
+      <%--HEADER--%>
+           
+
+                
+            <div class="header">
+
+            <nav>
+                <div id="preheadlogo">
+                    <div id="headlogo">
+                        <span>NWACMS</span>
+                    </div>
+                </div>
+
+                    <ul id="navlist">
+                        <a class="li" href="Default.aspx"><li class="li" > Home </li></a>
+                        <a href="About.aspx"> <li> About Us</li></a>
+                        <a > <li>Contact Us</li></a>
+                        <li> </li>
+                         
+                         <li style="width:25.65%" id="login">
+
+                             
+                         </li>
+ 
+                    </ul>
+                <div id="subnav">
+
+             <div>
+                 <ul id="navlogin">
+                     <li>
+                         <asp:LoginView ID="MasterLoginView" runat="server">
+                             <LoggedInTemplate>
+                                 Welcome:
+                                 <asp:LoginName ID="MasterLoginName" runat="server" />
+                             </LoggedInTemplate>
+                             <AnonymousTemplate>
+                                 Welcome: Guests.
+                             </AnonymousTemplate>
+                         </asp:LoginView>
+                     </li>
+                     <li style="width: 45px; margin-left: 2px">
+                         <asp:LoginStatus Font-Size="Small" ID="LoginStatus2" runat="server" LoginText="-Login"
+                             LogoutText="-Logout" />
+                     </li>
+                     <li style="width: 50px; ">
+                         <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/user-26.png"
+                             PostBackUrl="~/Login.aspx" />
+                     </li>
+                 </ul>
+             </div>
+         </div>
+            </nav>
+
+                      
+                <%--<div id="loginForm" style="display:none;cursor:default;z-index:1">
+                  <%--<asp:Login ID="Login1" runat="server" FailureText="Make sure Username and Password are correct" onauthenticate="Login1_Authenticate" onloginerror="Login1_LoginError">
+                    <LayoutTemplate>
+                    <div style="text-align:left;height:100%;background-color:#4C4A4B;color:white"><span style="margin-left:3%;font-size:16pt;font-weight:bolder">Login</span></div>
+                       <form style="background-image:none;width:350px"><table ><tr><td  style="border:none"><label>UserName: </label></td> <td  style="border:none"><div id="Div1" class="input-control text"><input type="text" runat="server" ID="UserName1" placeholder="Enter Username" ><button class="btn-clear"></button></div></td><td  style="border:none;color:red" ><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="UserName1"></asp:RequiredFieldValidator></td></tr><tr><td  style="border:none"><label>Password: </label></td> <td  style="border:none"><div id="Div2" class="input-control password"><input type="password" ID="Password1" runat="server" placeholder="Enter Password"><button class="btn-reveal"></button></div></td><td  style="border:none;color:red"><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="Password1"></asp:RequiredFieldValidator></td></tr></table></form>
+                        
+                        <asp:Literal ID=FailureText runat="server" EnableViewState="false"></asp:Literal>
+                       
+                        <div style="display:inline;">
+                            <asp:TextBox ID="UserName" CssClass="input-control text" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="Password" CssClass="input-control text" runat="server"></asp:TextBox>   
+                        </div> 
+                        <asp:Button ID="LoginButton" Text="Login" runat="server" CommandName="Login" onclick="Login1_LoginButton_Click" />
+                    </LayoutTemplate>
+                    </asp:Login> 
+
+                </div>--%>
+                     
+          
+                     </div>  
+                     
+        
+                       
+                   
+                   
+                
+       
+            <div id="conain-all">
+                <%-- MAIN CONTENT--%>
+
+                
+
+                <div class="main">
+                            
+    
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                            
+                          
+                </div>
+
+                <div class=" leftnav"> 
+                                <div <%--style="padding-top:52px;"--%>>
+                                <table class="tab" style="width: 100%; table-layout: fixed; " >
+                                    <%--<tr >
+                                        <td ></td>
+                                    </tr>
+                                    <tr class="td">
+                                        <td style="border-bottom: none;">  </td>
+                                    </tr>
+                                    <tr class="td">
+                                        <td style="border-bottom: none;"> </td>
+                                    </tr>
+                                    
+                                     <tr class="td">
+                                        <td style="border-bottom: none;" ><%--<a href="ManageUsers.aspx">Manage Users</a></td>
+                                    </tr>--%>
+       
+
+                                </table>
+                                </div>
+                               
+                                           <div id='cssmenu' class="tab" >
+                                                <ul>
+                                                <%if(String.IsNullOrEmpty(Page.User.Identity.Name))
+                                               { %>    
+
+
+                                                    <li class="no-sub"><a href='Default.aspx'><span>Make Complaint</span></a></li>
+                                                    <li class="no-sub"><a href='Trackcomplaint.aspx'><span>Track Complaint</span></a>
+
+                                             <%} %> 
+
+
+                                              <%-- <%if(!String.IsNullOrEmpty(Page.User.Identity.Name))
+                                               { %>  --%>   
+                                                    <li class="has-sub"><a href='#'><span>Complaints</span></a>
+                                                        <ul>
+                                                             <li ><a href='Default.aspx'><span>Make Complaint</span></a></li>
+                                                             <li ><a href='Trackcomplaint.aspx'><span>Track Complaint</span></a>
+                                                             <li ><a href='Complaints.aspx'><span>View Complaint</span></a></li>
+                                                              
+                                                        </ul>
+                                                    </li>
+                                                  
+
+                                                 <%-- <%if(Page.User.IsInRole("admin"))
+                                                        { %>--%>
+                                                      <li class='has-sub'><a href='#'><span>Manage Users</span></a>
+
+                                                      <ul>
+                                                         <li><a href='AddUser.aspx'><span>Create User</span></a></li>
+                                                         <li><a href='UpdateUser.aspx'><span>Update User</span></a></li>
+                                                          
+                                                      </ul>
+                                                      </li>
+                                                      <%--<%} %>--%>
+                                                </ul>
+                                            </div>
+                                        <%-- <%} %>--%>
+                              </div>
+               
+            </div> 
+      </div>
+                        
+                            <%--FOOTER--%>
+                            <div class="footer">
+                                <span style="vertical-align: middle;">2013, Complaint Management System <span style="font-family: Segoe UI;
+                                    font-size: 9pt; vertical-align: middle">Copyright © National Works Agency Jamaica</span>
+                                </span>
+                            </div>
+                        
+       
+    </form>
+ 
+ 
+
+
+</body>
+
+</html>
+

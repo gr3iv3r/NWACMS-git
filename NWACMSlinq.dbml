@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NWACMS" Class="NWACMSlinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=wks1;AttachDbFilename=|DataDirectory|\NWACMS.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="NWACMSConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.acknowledged" Member="acknowledgeds">
+    <Type Name="acknowledged">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="inbox_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="emp_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="date_seen" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Association Name="Employee_acknowledged" Member="Employee" ThisKey="emp_ID" OtherKey="emp_ID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Inbox_acknowledged" Member="Inbox" ThisKey="inbox_ID" OtherKey="inbox_ID" Type="Inbox" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Workorder" Member="Workorders">
+    <Type Name="Workorder">
+      <Column Name="workorder_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="comp_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="emp_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Parish_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="Workorder_approved_By" Member="approved_Bies" ThisKey="workorder_Id" OtherKey="workorder_Id" Type="approved_By" />
+      <Association Name="Workorder_Item" Member="Items" ThisKey="workorder_Id" OtherKey="workorder_Id" Type="Item" />
+      <Association Name="Complaint_Workorder" Member="Complaint" ThisKey="comp_ID" OtherKey="comp_ID" Type="Complaint" IsForeignKey="true" />
+      <Association Name="Employee_Workorder" Member="Employee" ThisKey="emp_ID" OtherKey="emp_ID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Parish_Workorder" Member="Parish" ThisKey="Parish_ID" OtherKey="parish_ID" Type="Parish" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.approved_By" Member="approved_Bies">
+    <Type Name="approved_By">
+      <Column Name="approve_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="emp_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="date_approved" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="workorder_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Workorder_approved_By" Member="Workorder" ThisKey="workorder_Id" OtherKey="workorder_Id" Type="Workorder" IsForeignKey="true" />
+      <Association Name="Employee_approved_By" Member="Employee" ThisKey="emp_ID" OtherKey="emp_ID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="cat_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cat_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="dep_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Category_Subcategory" Member="Subcategories" ThisKey="cat_Id" OtherKey="cat_Id" Type="Subcategory" />
+      <Association Name="Department_Category" Member="Department" ThisKey="dep_Id" OtherKey="dep_Id" Type="Department" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Complaint" Member="Complaints">
+    <Type Name="Complaint">
+      <Column Name="comp_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cus_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_resolved" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Descrip" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="address1" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="address2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="parish_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="emp_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isResolved" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="sub_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="track_no" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Priority" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="submitted_By" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ResolvedConfirmed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ResolvedConfirmed_BY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Complaint_Workorder" Member="Workorders" ThisKey="comp_ID" OtherKey="comp_ID" Type="Workorder" />
+      <Association Name="Complaint_Inbox" Member="Inboxes" ThisKey="comp_ID" OtherKey="comp_ID" Type="Inbox" />
+      <Association Name="Complaint_Remark" Member="Remarks" ThisKey="comp_ID" OtherKey="comp_ID" Type="Remark" />
+      <Association Name="Complaint_Sent" Member="Sents" ThisKey="comp_ID" OtherKey="comp_ID" Type="Sent" />
+      <Association Name="Customer_Complaint" Member="Customer" ThisKey="cus_ID" OtherKey="cus_ID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Parish_Complaint" Member="Parish" ThisKey="parish_ID" OtherKey="parish_ID" Type="Parish" IsForeignKey="true" />
+      <Association Name="Subcategory_Complaint" Member="Subcategory" ThisKey="sub_Id" OtherKey="sub_Id" Type="Subcategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contact" Member="Contacts">
+    <Type Name="Contact">
+      <Column Name="contact_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Detail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="type_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="emp_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Employee_Contact" Member="Employee" ThisKey="emp_ID" OtherKey="emp_ID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Type_Contact" Member="Type" ThisKey="type_ID" OtherKey="type_ID" Type="Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="cus_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="contact_No" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Customer_Complaint" Member="Complaints" ThisKey="cus_ID" OtherKey="cus_ID" Type="Complaint" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Department" Member="Departments">
+    <Type Name="Department">
+      <Column Name="dep_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dep_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Department_Category" Member="Categories" ThisKey="dep_Id" OtherKey="dep_Id" Type="Category" />
+      <Association Name="Department_Employee" Member="Employees" ThisKey="dep_Id" OtherKey="dep_Id" Type="Employee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="emp_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Tel" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="dep_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[_role]" Member="_role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Employee_acknowledged" Member="acknowledgeds" ThisKey="emp_ID" OtherKey="emp_ID" Type="acknowledged" />
+      <Association Name="Employee_Workorder" Member="Workorders" ThisKey="emp_ID" OtherKey="emp_ID" Type="Workorder" />
+      <Association Name="Employee_approved_By" Member="approved_Bies" ThisKey="emp_ID" OtherKey="emp_ID" Type="approved_By" />
+      <Association Name="Employee_Contact" Member="Contacts" ThisKey="emp_ID" OtherKey="emp_ID" Type="Contact" />
+      <Association Name="Employee_log" Member="logs" ThisKey="emp_ID" OtherKey="emp_ID" Type="log" />
+      <Association Name="Employee_Remark" Member="Remarks" ThisKey="emp_ID" OtherKey="emp_ID" Type="Remark" />
+      <Association Name="Employee_Sent" Member="Sents" ThisKey="emp_ID" OtherKey="From" Type="Sent" />
+      <Association Name="Employee_Sent1" Member="Sents1" ThisKey="emp_ID" OtherKey="To" Type="Sent" />
+      <Association Name="Department_Employee" Member="Department" ThisKey="dep_Id" OtherKey="dep_Id" Type="Department" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Inbox" Member="Inboxes">
+    <Type Name="Inbox">
+      <Column Name="inbox_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="comp_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[_role]" Member="_role" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Inbox_acknowledged" Member="acknowledgeds" ThisKey="inbox_ID" OtherKey="inbox_ID" Type="acknowledged" />
+      <Association Name="Complaint_Inbox" Member="Complaint" ThisKey="comp_ID" OtherKey="comp_ID" Type="Complaint" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Item" Member="Items">
+    <Type Name="Item">
+      <Column Name="Item_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="item" Member="item1" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="unit_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rate" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="workorder_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="inStore" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Workorder_Item" Member="Workorder" ThisKey="workorder_Id" OtherKey="workorder_Id" Type="Workorder" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Unit_Item" Member="Unit" ThisKey="unit_ID" OtherKey="unit_ID" Type="Unit" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[log]" Member="logs">
+    <Type Name="log">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="emp_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_log" Member="Employee" ThisKey="emp_ID" OtherKey="emp_ID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Parish" Member="Parishes">
+    <Type Name="Parish">
+      <Column Name="parish_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parish" Member="parish1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Parish_Workorder" Member="Workorders" ThisKey="parish_ID" OtherKey="Parish_ID" Type="Workorder" />
+      <Association Name="Parish_Complaint" Member="Complaints" ThisKey="parish_ID" OtherKey="parish_ID" Type="Complaint" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Remarks" Member="Remarks">
+    <Type Name="Remark">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="emp_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="comp_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Member="Remark1" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Complaint_Remark" Member="Complaint" ThisKey="comp_ID" OtherKey="comp_ID" Type="Complaint" IsForeignKey="true" />
+      <Association Name="Employee_Remark" Member="Employee" ThisKey="emp_ID" OtherKey="emp_ID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sent" Member="Sents">
+    <Type Name="Sent">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[From]" Member="From" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[To]" Member="To" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="comp_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Complaint_Sent" Member="Complaint" ThisKey="comp_ID" OtherKey="comp_ID" Type="Complaint" IsForeignKey="true" />
+      <Association Name="Employee_Sent" Member="Employee" ThisKey="From" OtherKey="emp_ID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Employee_Sent1" Member="Employee1" ThisKey="To" OtherKey="emp_ID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Subcategory" Member="Subcategories">
+    <Type Name="Subcategory">
+      <Column Name="sub_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sub_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cat_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Subcategory_Complaint" Member="Complaints" ThisKey="sub_Id" OtherKey="sub_Id" Type="Complaint" />
+      <Association Name="Category_Subcategory" Member="Category" ThisKey="cat_Id" OtherKey="cat_Id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Type" Member="Types">
+    <Type Name="Type">
+      <Column Name="type_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="typName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Type_Contact" Member="Contacts" ThisKey="type_ID" OtherKey="type_ID" Type="Contact" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Unit" Member="Units">
+    <Type Name="Unit">
+      <Column Name="unit_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Unit" Member="Unit1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Unit_Item" Member="Items" ThisKey="unit_ID" OtherKey="unit_ID" Type="Item" />
+    </Type>
+  </Table>
+  <Function Name="dbo.seen_Who" Method="seen_Who">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <ElementType Name="seen_WhoResult">
+      <Column Name="firstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[_role]" Member="_role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="dep_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="date_seen" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.addInbox" Method="addInbox">
+    <Parameter Name="comp_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="role" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addUser" Method="addUser">
+    <Parameter Name="fname" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="lname" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="contact" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="title" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="dept" Type="System.Int32" DbType="Int" />
+    <Parameter Name="role" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addRemark" Method="addRemark">
+    <Parameter Name="remark" Type="System.String" DbType="NVarChar(266)" />
+    <Parameter Name="comp_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.setPriority" Method="setPriority">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="priority" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.resolved_Who" Method="resolved_Who">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="emp_Name" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="title" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="dep_Name" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="date_resolved" Type="System.DateTime" DbType="SmallDateTime" Direction="InOut" />
+    <ElementType Name="resolved_WhoResult">
+      <Column Name="emp_Name" Type="System.String" DbType="NVarChar(101) NOT NULL" CanBeNull="false" />
+      <Column Name="[_role]" Member="_role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="title" Type="System.String" DbType="NVarChar(154) NOT NULL" CanBeNull="false" />
+      <Column Name="date_resolved" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.confirm_Request" Method="confirm_Request">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="request_Action" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.confirm_Status" Method="confirm_Status">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="confirmStatus" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addComplaint" Method="addComplaint">
+    <Parameter Name="fname" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="lname" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="contact" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="subcategory" Type="System.Int32" DbType="Int" />
+    <Parameter Name="parish" Type="System.Int32" DbType="Int" />
+    <Parameter Name="street" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="description" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="date_resolved" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="comp_ID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="isResolved" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="submitted_By" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.resovle_This" Method="resovle_This">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="date_resolved" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="isResolved" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.complaintDetails" Method="complaintDetails">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="comp_ID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="date_resolved" Type="System.DateTime" DbType="SmallDateTime" Direction="InOut" />
+    <Parameter Name="Descrip" Parameter="descrip" Type="System.String" DbType="NVarChar(500)" Direction="InOut" />
+    <Parameter Name="address1" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="isResolved" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Priority" Parameter="priority" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="firstName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="lastName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="contact_No" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="inboxDate_recieved" Type="System.DateTime" DbType="SmallDateTime" Direction="InOut" />
+    <Parameter Name="cat_Name" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="sub_Name" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="parish" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="date_seen" Type="System.DateTime" DbType="SmallDateTime" Direction="InOut" />
+    <Parameter Name="submitted_By" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="submit_Title" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="submit_Dept" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="emp_fName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="emp_lName" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="ResolvedConfirmed" Parameter="resolvedConfirmed" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ResolvedConfirmed_BY" Parameter="resolvedConfirmed_BY" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="inbox_ID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.seen_By" Method="seen_By">
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="inbox_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="date_seen" Type="System.DateTime" DbType="SmallDateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getWo_ID" Method="getWo_ID">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="workorder_ID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ModWrkItem" Method="ModWrkItem">
+    <Parameter Name="workorder_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="item" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="desc" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="quant" Type="System.Int32" DbType="Int" />
+    <Parameter Name="rate" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="amount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="total" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="unit_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="inStore" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ModWrkTitle" Method="ModWrkTitle">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="title" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="parish_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="workorder_Id" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.checkApproved_By" Method="checkApproved_By">
+    <Parameter Name="workorder_Id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="res" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addWrkTitle" Method="addWrkTitle">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="title" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="parish" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="workorder_Id" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addWrkItem" Method="addWrkItem">
+    <Parameter Name="workorder_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="item" Type="System.String" DbType="NVarChar(150)" />
+    <Parameter Name="desc" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="quant" Type="System.Int32" DbType="Int" />
+    <Parameter Name="rate" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="amount" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="unit_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="inStore" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.calcWoCost" Method="calcWoCost">
+    <Parameter Name="workorder_ID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.approveWO" Method="approveWO" IsComposable="true">
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="workorder_Id" Type="System.Int32" DbType="Int" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.getIfApproved_By" Method="getIfApproved_By">
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="workorder_Id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="res" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.setFullyApproved" Method="setFullyApproved">
+    <Parameter Name="workorder_Id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getWoDetails" Method="getWoDetails">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="workorder_ID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="title" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="woTitle" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="date_recieved" Type="System.DateTime" DbType="SmallDateTime" Direction="InOut" />
+    <Parameter Name="parish" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Cost" Parameter="cost" Type="System.Decimal" DbType="Decimal(18,0)" Direction="InOut" />
+    <Parameter Name="completed" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getApproved_By" Method="getApproved_By">
+    <Parameter Name="workorder_Id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Manager_approved" Parameter="manager_approved" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Director_approved" Parameter="director_approved" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="SrDirector_approved" Parameter="srDirector_approved" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="Ceo_approved" Parameter="ceo_approved" Type="System.String" DbType="NVarChar(50)" Direction="InOut" />
+    <Parameter Name="fullyApproved" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.setWoFinish" Method="setWoFinish">
+    <Parameter Name="workorder_Id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="completed" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getIfCompExist" Method="getIfCompExist">
+    <Parameter Name="track_no" Type="System.Int32" DbType="Int" />
+    <Parameter Name="res" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
