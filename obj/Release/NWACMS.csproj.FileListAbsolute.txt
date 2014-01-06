@@ -30,3 +30,5 @@ C:\Documents and Settings\michaelsaunderson.TRAFFIC\My Documents\Dropbox\NWACMS\
 C:\Documents and Settings\michaelsaunderson.TRAFFIC\My Documents\Dropbox\NWACMS\NWACMS\obj\Release\RdlCompile.compiled
 C:\Documents and Settings\michaelsaunderson.TRAFFIC\My Documents\Dropbox\NWACMS\NWACMS\obj\Release\NWACMS.dll
 C:\Documents and Settings\michaelsaunderson.TRAFFIC\My Documents\Dropbox\NWACMS\NWACMS\obj\Release\NWACMS.pdb
+C:\Documents and Settings\michaelsaunderson.TRAFFIC\My Documents\Dropbox\NWACMS\NWACMS\bin\Microsoft.ReportViewer.WebForms.dll
+C:\Documents and Settings\michaelsaunderson.TRAFFIC\My Documents\Dropbox\NWACMS\NWACMS\bin\Microsoft.ReportViewer.WebForms.xml
