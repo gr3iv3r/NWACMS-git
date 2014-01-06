@@ -90,6 +90,7 @@
     <Content Include="App_Data\NWACMS_log.ldf">
       <DependentUpon>NWACMS.mdf</DependentUpon>
     </Content>
+    <Content Include="Report.aspx" />
     <Content Include="Scripts\menu_jquery.js" />
     <Content Include="Reports.aspx" />
     <Content Include="Scripts\dialog.js" />
@@ -247,6 +248,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports.aspx.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -346,7 +354,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>3285</DevelopmentServerPort>
+          <DevelopmentServerPort>3835</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

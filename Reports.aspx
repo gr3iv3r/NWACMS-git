@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Reports.aspx.cs" Inherits="NWACMS.Reports" EnableViewState="true"%>
-<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+    Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
+ 
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -13,10 +19,16 @@
                 </DataSources>
             </LocalReport>
         </rsweb:ReportViewer>
+
+      <%--  <rsweb:ReportViewer ID="ReportViewer1" runat="server">
+        </rsweb:ReportViewer>--%>
+
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
             ConnectionString="<%$ ConnectionStrings:NWACMSConnectionString %>" 
             SelectCommand="periodReport" SelectCommandType="StoredProcedure">
         </asp:SqlDataSource>
-         
+        
+        
+        
     </div>
 </asp:Content>
